@@ -1,0 +1,70 @@
+1) i had provide comments to breakdown everything in script 
+2) suporting regex or -i,-c,-l 
+    2.1) we can modify the grep with -E option for regex instend of manuall check
+        e.g 
+while getopts ":nvhE" opt; do
+    case $opt in
+        E) 
+            regex_mode=true
+            ;;
+        # ... other options
+    esac
+done
+
+# In the line-matching logic:
+if $regex_mode; then
+    if [[ "$line" =~ $search_string ]]; then
+        match=true
+    else
+        match=false
+    fi
+else
+    # Original case-insensitive substring match
+    lower_line="${line,,}"
+    lower_search="${search_string,,}"
+    if [[ "$lower_line" == *"$lower_search"* ]]; then
+        match=true
+    else
+        match=false
+    fi
+fi
+
+
+    2.2) -i (case-insensative) the script supporting the it but we could simply it using grep -i automatically handle it 
+    2.3) -c count mode suppress line count 
+        e.g 
+        # Add -c to getopts
+count_mode=false
+while getopts ":nvhEic" opt; do
+    case $opt in
+        c) 
+            count_mode=true
+            ;;
+        # ... other options
+    esac
+done
+
+# Replace line-printing logic with a counter:
+match_count=0
+while IFS= read -r line; do
+    # ... existing match logic ...
+    if { $match && ! $invert_match; } || { ! $match && $invert_match; }; then
+        if $count_mode; then
+            ((match_count++))
+        else
+            # Original line-printing code
+        fi
+    fi
+done < "$filename"
+
+# Print the count at the end:
+if $count_mode; then
+    echo "$match_count"
+fi
+
+
+3) The most challenging part of the script was handling the logic for option combinations,
+particularly when processing -v and -n.
+Ensuring that the script could correctly interpret combinations like -vn or -nv,
+and then appropriately handle both flags in a single pass,
+required careful attention to the order in which options were parsed and processed.

@@ -19,7 +19,7 @@ print_help() {
     exit 0
 }
 
-# if no arguments provided
+# if no arguments provided (args validation)
 if [[ $# -eq 0 ]]; then 
     echo "Error: No arguments given."
     print_help
