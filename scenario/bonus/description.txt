@@ -1,0 +1,12 @@
+DNS permently fixed 
+edit /etc/wsl.conf 
+    add generateResolveConf = false (diable auto resolve.conf generation)
+    configure /etc/hosts (already done before)
+
+we will found 
+    nameserver 8.8.8.8
+
+********i had also create two script to conf a local/etc/hosts *********
+1-using systemd-resolved 
+2-network manger nmcli 
+

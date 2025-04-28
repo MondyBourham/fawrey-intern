@@ -1,0 +1,15 @@
+******* Reasons why internal.example.com is unreachable even if server up *******
+
+$in POV to DNS 
+-Domain not defined in DNS internal.example.com not registered in DNS server.
+-Wrong DNS server used , /etc/resolve.conf points to anthor or broken dns server.
+-firewall blocking DNS
+
+$Network 
+-wrong ip rout
+-firewall blocking HTTP/HTTPS 80/443 (may allow ping but block traffic)
+
+
+$server 
+-Web server not listing on right port or ip 
+- migh listen only on localhost not public

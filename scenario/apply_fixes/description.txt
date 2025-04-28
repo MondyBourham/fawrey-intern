@@ -1,0 +1,11 @@
+#problem 1 (NXDOMAIN)
+- adding 127.0.0.2 internal.example.com to the /etc/hosts 
+    so we can ping it locally 
+
+#problem 2 WebServer not found 
+-start any webserver i had choose Nginx 
+    so now we can curl it http://internal.example.com 
+
+#problem 3 DNS server conf 
+-at dir /etc/resolve.conf it show wrong webserver so we edit it manually
+- open any editor replace the wrong one with nameserver 8.8.8.8

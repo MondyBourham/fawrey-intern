@@ -1,0 +1,5 @@
+dig +short internal.example.com returns nothing empty
+sudo netstat -tuln | grep ":80\|:443"returns nothing 
+using curl gonna give could not resolve host
+
+so theres no web server listing on both port 80 or 443 locally 
